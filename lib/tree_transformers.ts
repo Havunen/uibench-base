@@ -1,4 +1,4 @@
-import {TreeNodeState} from "./state";
+import {TreeNodeState} from './state';
 
 export type TreeTransformer = (children: TreeNodeState[]) => TreeNodeState[];
 

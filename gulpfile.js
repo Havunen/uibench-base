@@ -21,29 +21,29 @@ function buildES6() {
   const merge = require("merge2");
 
   const result = gulp.src(["lib/**/*.ts"])
-    .pipe(tslint())
-    .pipe(tslint.report("verbose", {
-      emitError: false,
+    .pipe(tslint({
+        formatter: "verbose"
     }))
+    .pipe(tslint.report())
     .pipe(ts(Object.assign(tsConfig.compilerOptions, {
       typescript: require("typescript"),
       target: "es6",
-      declaration: true,
+      declaration: true
     })));
 
   return merge([
     result.dts.pipe(gulp.dest("dist/typings")),
-    result.js.pipe(gulp.dest("build/es6")),
+    result.js.pipe(gulp.dest("build/es6"))
   ]);
 }
 
 function distES6() {
   return rollup.rollup({
-    entry: "build/es6/uibench.js",
+    entry: "build/es6/uibench.js"
   }).then(function(bundle) {
     return bundle.write({
-      format: "es6",
-      dest: "dist/es6/uibench.js",
+      format: "es",
+      dest: "dist/es6/uibench.js"
     });
   });
 }
@@ -56,16 +56,17 @@ function distUMD() {
         typescript: require("typescript"),
         target: "es5",
         module: "es6",
-        declaration: false,
-      })),
-    ],
-  }).then((bundle) => {
-    return bundle.write({
-      format: "umd",
-      moduleName: "uibench",
-      dest: "dist/umd/uibench.js",
-    });
-  });
+        declaration: false
+      }))
+    ]
+  }).then(function (bundle) {
+      return bundle.write({
+          format: "umd",
+          moduleName: "uibench",
+          dest: "dist/umd/uibench.js"
+      });
+    }
+  )
 }
 
 function distGHPagesJS() {

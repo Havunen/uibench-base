@@ -1,14 +1,24 @@
 {
+  "version": "2.1.4",
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es6",
-    "outDir": "build/es6",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "removeComments": false,
-    "moduleResolution": "node"
-  },
-  "files": [
-    "lib/"
-  ],
-  "compileOnSave": false
+    "module": "es6",
+    "allowJs": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "preserveConstEnums": true,
+    "declaration": true,
+    "outDir": "dist-es",
+    "sourceMap": false,
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "jsx": "preserve",
+    "noUnusedLocals": true,
+    "strictNullChecks": false,
+    "removeComments": false
+  }
 }
